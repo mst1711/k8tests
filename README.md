@@ -50,7 +50,8 @@ until [ $res == "0" ]; do
 done
 
 ```
-а потом запускаем его на всех 120 машинах
+- а потом запускаем его на всех 120 машинах
 ```
 for i in $(seq 1 120); do cat check_mount.sh | ssh -i ~/.ssh/key root@our-host-$i.our-domain.com bash; done
- 
+
+5. 
