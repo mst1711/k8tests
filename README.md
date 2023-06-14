@@ -31,4 +31,26 @@ findtime = 180
 action = iptables-multiport[name=nginx, port="80,443", protocol=tcp]
 ```
 
-4. 
+4. Предварительно условимся, что mount point прописан в fstab
+- Локально создаем файл со следующим содержимым
+**check_mount.sh**
+```
+#!/bin/bash
+
+CHECK_PATH="/opt/data"
+mount | grep $CHECK_PATH 2>&1 > /dev/null
+if [ $(echo $?) == "0" ]; then
+    exit 0
+fi
+
+res=1
+until [ $res == "0" ]; do
+    mount $CHECK_PATH 2>&1 > /dev/null
+    res=$(echo $?)
+done
+
+```
+а потом запускаем его на всех 120 машинах
+```
+for i in $(seq 1 120); do cat check_mount.sh | ssh -i ~/.ssh/key root@our-host-$i.our-domain.com bash; done
+ 
