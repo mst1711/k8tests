@@ -1,0 +1,22 @@
+services:
+  redis:
+    image: redis/redis-stack:latest
+    container_name: redis
+    volumes:
+      - ./redis:/data
+    networks:
+      - videohosting
+  nginx:
+    image: openresty/openresty:latest
+    container_name: openresty
+    ports:
+      - 80:80
+    volumes:
+      - ./video:/opt/video
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - videohosting
+
+networks:
+  videohosting:
+    name: videohosting
