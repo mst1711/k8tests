@@ -1,8 +1,10 @@
 # Ответы на тестовые задачи
 
-1. https://github.com/mst1711/k8tests/tree/main/issue1
+## 1. 
+https://github.com/mst1711/k8tests/tree/main/issue1
 
-2. Самый простой вариант при условии, что все хосты имеют одинаковые fqdn имена, различающиеся только порядковым индексом:
+## 2. 
+Самый простой вариант при условии, что все хосты имеют одинаковые fqdn имена, различающиеся только порядковым индексом:
 ```
 for i in $(seq 1 120); do \
     scp -i ~/.ssh/key /path/to/new/config/nginx.conf root@our-host-$i.our-domain.com:/etc/nginx/nginx.conf; \
