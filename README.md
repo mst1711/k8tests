@@ -54,4 +54,4 @@ done
 ```
 for i in $(seq 1 120); do cat check_mount.sh | ssh -i ~/.ssh/key root@our-host-$i.our-domain.com bash; done
 
-5. 
+5. aaa
